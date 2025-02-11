@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence
+                                 https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
+             version="3.0">
+
+    <persistence-unit name="gerenciadorPU">
+        <!-- Define o provedor de persistência (Hibernate) -->
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <!-- Defina suas entidades JPA aqui -->
+        <class>com.gerenciador.esig.model.Tarefa</class>
+        <!-- Se houver outras entidades, adicione aqui -->
+
+        <!-- Configurações do banco de dados -->
+        <properties>
+            <!-- Dialeto do PostgreSQL para o Hibernate -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+            <!-- O Hibernate gerencia o banco de dados (pode ser 'update', 'create', etc.) -->
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <!-- Mostrar as consultas SQL no console para debug -->
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <!-- Configuração para fusos horários -->
+            <property name="hibernate.jdbc.time_zone" value="UTC"/>
+            <!-- Conexão com o PostgreSQL -->
+            <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/gerenciador_bancodados"/>
+            <property name="jakarta.persistence.jdbc.user" value="gerenciador_user"/>
+            <property name="jakarta.persistence.jdbc.password" value="esig"/>
+        </properties>
+    </persistence-unit>
+
+</persistence>
