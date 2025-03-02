@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/xml/ns/javaee"
+      xmlns:f="http://java.sun.com/xml/ns/javaee">
+
+<h:head>
+    <title>Gerenciador de Tarefas</title>
+</h:head>
+
+<h:body>
+    <h2>Lista de Tarefas</h2>
+
+    <h:form>
+        <h:panelGrid columns="2">
+            <h:outputLabel for="titulo" value="Título:"/>
+            <h:inputText id="titulo" value="#{tarefaBean.tarefa.titulo}" required="true"/>
+
+            <h:outputLabel for="descricao" value="Descrição:"/>
+            <h:inputTextarea id="descricao" value="#{tarefaBean.tarefa.descricao}"/>
+
+            <h:outputLabel for="status" value="Status:"/>
+            <h:selectOneMenu id="status" value="#{tarefaBean.tarefa.status}">
+                <f:selectItem itemValue="Pendente" itemLabel="Pendente"/>
+                <f:selectItem itemValue="Concluída" itemLabel="Concluída"/>
+            </h:selectOneMenu>
+        </h:panelGrid>
+
+        <h:commandButton value="Adicionar Tarefa" action="#{tarefaBean.adicionarTarefa}"/>
+    </h:form>
+
+    <h:separator/>
+
+    <!-- Tabela para exibir a lista de tarefas -->
+    <h:dataTable value="#{tarefaBean.tarefas}" var="tarefa" border="1">
+        <h:column>
+            <f:facet name="header">Título</f:facet>
+            #{tarefa.titulo}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Descrição</f:facet>
+            #{tarefa.descricao}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Status</f:facet>
+            #{tarefa.status}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Ações</f:facet>
+            <h:commandButton value="Remover" action="#{tarefaBean.removerTarefa(tarefa)}"/>
+        </h:column>
+    </h:dataTable>
+
+    <h:link value="Voltar para Home" outcome="index.xhtml"/>
+</h:body>
+
+</html>
